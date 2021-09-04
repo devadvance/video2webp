@@ -1,0 +1,82 @@
+<!--- Copyright 2021 Matt Joseph -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Video2WebP</title>
+  <meta name="description" content="Video2WebP">
+  <meta name="author" content="Matt Joseph">
+  <link rel="stylesheet" href="assets/normalize.css" />
+  <link rel="stylesheet" href="assets/custom.css" />
+</head>
+
+<body>
+  
+  <header>
+    <h1>Video2WebP</h1>
+  </header>
+  <main>
+    <section id="instructions" class="card">
+      <h2>Instructions</h2>
+      <ol>
+        <li>🎞️ Select the video you want to convert to an animated WebP.</li>
+        <li>⚙️ Use the controls to specify the output settings. Higher quality/size/FPS means larger image size and a longer time to convert.</li>
+        <li>🖱️ Click the <strong>Convert</strong> button to begin the process.</li>
+        <li>⏱️ Wait patiently. This tool can be slow if the input video is large.</li>
+        <li>🖼️ Once the image is displayed below, you can save it by <strong>right clicking</strong> and saving the image.</li>
+      </ol>
+    </section>
+    <section id="main-form" class="card">
+      <h2>Select and convert</h2>
+      <form name="upload-form" class="flex-form">
+        <div class="form-section">
+          <label for="upload-input">Select file:</label>
+          <input id="upload-input" type="file" name="selected-files">
+          Size: <span id="file-size">0</span>
+        </div>
+        <div class="form-section">
+          <label for="fps">FPS (between 1 and 30):</label>
+          <input type="range" id="fps" name="fps" min="1" max="30" value="10" oninput="this.nextElementSibling.value = this.value">
+          <output for="fps">10</output>
+        </div>
+        <div class="form-section">
+          <label for="quality">Quality (between 1 and 100):</label>
+          <input type="range" id="quality" name="quality" min="1" max="100" value="50" oninput="this.nextElementSibling.value = this.value">
+          <output for="quality">50</output>
+        </div>
+        <div class="form-section">
+          <label for="width">Width (%) (between 1 and 100):</label>
+          <input type="range" id="width" name="width" min="1" max="100" value="50" oninput="this.nextElementSibling.value = this.value">
+          <output for="width">50</output>
+        </div>
+        <div class="form-section">
+          <input id="convert-button" type="button" value="Convert">
+        </div>
+      </form>
+    </section>
+
+    <section id="info-area" class="card">
+      <h2>Status</h2>
+      <p id="status-box">Status messages will show here</p>
+      <details>
+        <summary>Detailed messages (for technical users)</summary>
+        <span id="detail-message"></span>
+      </details>
+    </section>
+    
+    <section id="output-area" class="card">
+      <h2>Output</h2>
+      <div class="lds-dual-ring hidden" id="spinner"></div>
+      <img class="hidden" id="output-image" />
+    </section>
+    
+  </main>
+  <footer>
+    <div><a href="https://mattj.io">&copy; 2021 Matt Joseph</a> | <a href="https://mattj.io/video2webp/">About Video2Webp</a></div>
+  </footer>
+  <script src="js/ffmpeg.min.js"></script>
+  <script src="js/custom.js"></script>
+</body>
+</html>
